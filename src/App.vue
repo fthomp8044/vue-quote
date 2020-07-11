@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <app-header></app-header>
+      <app-header :quoteCount="quotes.length" :maxQuotes="maxQuotes"></app-header>
       <!-- //listing component FROM child -->
       <app-new-quote @quoteAdded="newQuote"></app-new-quote>
       <!-- passing component TO child -->
@@ -31,10 +31,13 @@
         },
         methods: {
           newQuote(quote) {
+            if (this.quotes. length >= this.maxQuotes) {
+              return alert("Please delete Quotes First");
+            }
             this.quotes.push(quote);
           },
           deleteQuote(index) {
-            this.quotes.spice(index, 1);
+            this.quotes.splice(index, 1);
           }
         },
         components: {
